@@ -1,10 +1,9 @@
 ---
 - block:
   - include: find_ptp_interfaces.yml
-    loop: "{{ ansible_interfaces }}"
+    loop: "{{ ansible_interfaces |difference(AVOID_IFACES)}}"
     loop_control:
       loop_var: IFACE
-    when: IFACE not in AVOID_IFACES
     become: True
   tags:
     - ptp_start

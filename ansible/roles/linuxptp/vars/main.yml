@@ -10,6 +10,7 @@ MANAGEMENT_IP_FOR_PTP: "{{ ansible_host }}"
 SYNC_SYSTEM_CLOCK: True
 ALL_NICS: False
 AVOID_IFACES: []
+PTP_IFACES: []
 
 lp_logrotate_confd:
   - path: ptp4l
