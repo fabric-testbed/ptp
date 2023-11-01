@@ -1,17 +1,17 @@
 ---
-# - name: Clone the linuxptp repository.
-#   git:
-#     repo: "{{ PTP_REPO_URL }}"
-#     dest: /tmp/{{ PTP_PACKAGE_NAME }}-{{ PTP_PACKAGE_TAG }}
-#     version: "{{ PTP_PACKAGE_TAG }}"
-#     accept_hostkey: yes
-#     #depth: 1
+- name: Clone the linuxptp repository.
+  git:
+    repo: "{{ PTP_REPO_URL }}"
+    dest: /tmp/{{ PTP_PACKAGE_NAME }}-{{ PTP_PACKAGE_TAG }}
+    version: "{{ PTP_PACKAGE_TAG }}"
+    accept_hostkey: yes
+    #depth: 1
 
-- name: Download linuxptp
-  ansible.builtin.unarchive:
-    src: "{{ PTP_SOURCE_URL }}"
-    dest: /tmp/
-    remote_src: yes
+# - name: Download linuxptp
+#   ansible.builtin.unarchive:
+#     src: "{{ PTP_SOURCE_URL }}"
+#     dest: /tmp/
+#     remote_src: yes
 
 - name: Run 'make clean' target as root
   become: True

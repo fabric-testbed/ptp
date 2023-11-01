@@ -12,7 +12,7 @@
       when: (ptp4l_version.stdout == '')
 
     - include: linuxptp_fetch_n_install.yml
-    when: (ptp4l_version.stdout == '') or ( ptp4l_version.stdout != (PTP_PACKAGE_VERSION) )
+    when: (ptp4l_version.stdout == '') or ( ptp4l_version.stdout != (PTP_PACKAGE_VERSION) or force_install )
 
   - include: disable_chronyd.yml
 

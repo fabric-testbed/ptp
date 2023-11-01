@@ -4,11 +4,10 @@ PTP_PACKAGE_NAME: 'linuxptp'
 PTP_PACKAGE_VERSION: '4.1'
 PTP_PACKAGE_TAG: "{{ 'v' + PTP_PACKAGE_VERSION }}"
 PTP_SOURCE_URL: "{{ 'https://github.com/richardcochran/linuxptp/archive/refs/tags/'+ PTP_PACKAGE_TAG + '.tar.gz' }}"
-#PTP_REPO_URL: 'http://git.code.sf.net/p/linuxptp/code'
-PTP_REPO_URL: 'https://github.com/richardcochran/linuxptp.git'
+PTP_REPO_URL: 'http://git.code.sf.net/p/linuxptp/code'
+#PTP_REPO_URL: 'https://github.com/richardcochran/linuxptp.git'
 MANAGEMENT_IP_FOR_PTP: "{{ ansible_host }}"
 SYNC_SYSTEM_CLOCK: True
-ALL_NICS: False
 AVOID_IFACES: []
 PTP_IFACES: []
 
@@ -49,3 +48,4 @@ lp_rsyslog_confd:
 
 # This value(in seconds) is applied as a power of 2  for ptp4l logging interval
 logging_summary_interval : 3
+force_install: False
