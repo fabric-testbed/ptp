@@ -1,0 +1,50 @@
+---
+# vars file for linuxptp-host
+PTP_PACKAGE_NAME: 'linuxptp'
+PTP_PACKAGE_VERSION: '4.1'
+PTP_PACKAGE_TAG: "{{ 'v' + PTP_PACKAGE_VERSION }}"
+PTP_SOURCE_URL: "{{ https://github.com/richardcochran/linuxptp/archive/refs/tags/'+ PTP_PACKAGE_TAG + '.tar.gz' }}"
+#PTP_REPO_URL: 'http://git.code.sf.net/p/linuxptp/code'
+PTP_REPO_URL: 'https://github.com/richardcochran/linuxptp.git'
+MANAGEMENT_IP_FOR_PTP: "{{ ansible_host }}"
+SYNC_SYSTEM_CLOCK: True
+ALL_NICS: False
+AVOID_IFACES: []
+
+lp_logrotate_confd:
+  - path: ptp4l
+    conf: |
+      /var/log/ptp4l.log {
+             daily
+             rotate 7
+             size 10M
+             compress
+             delaycompress
+             copytruncate
+             missingok
+      }
+  - path: phc2sys
+    conf: |
+      /var/log/phc2sys.log {
+             daily
+             rotate 7
+             size 10M
+             compress
+             delaycompress
+             copytruncate
+             missingok
+      }
+
+lp_rsyslog_confd:
+  - path: ptp4l
+    conf: |
+      if $programname == 'ptp4l' then /var/log/ptp4l.log
+        & stop
+
+  - path: phc2sys
+    conf: |
+      if $programname == 'phc2sys' then /var/log/phc2sys.log
+        & stop
+
+# This value(in seconds) is applied as a power of 2  for ptp4l logging interval
+logging_summary_interval : 3
