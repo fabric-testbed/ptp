@@ -1,6 +1,6 @@
 Role Name
 =========
-__linuxptp__ Deploy linuxptp v3.1.1 on Linux host or KVM nodes
+__linuxptp__ Deploy linuxptp on Linux KVM Virtual machines in FABRIC Project setup.
 
 Requirements
 ------------
@@ -14,15 +14,21 @@ Example Playbook
 <pre>
   - hosts: all
     roles:
-      - linuxptp
-      #- { role: linuxptp,ALL_NICS: False}
+      role: linuxptp
 </pre>          
 
 Example Run
 ----------------
 <pre>
+
+ansible-playbook -i <INVENTORY_FILE> playbook_fabric_experiment_ptp.yml
+
+ansible-playbook -i <INVENTORY_FILE> playbook_fabric_experiment_ptp.yml --extra-params @parameters.json
+
 ansible-playbook -i <INVENTORY_FILE> playbook_fabric_experiment_ptp.yml --tags=ptp_install
+
 ansible-playbook -i <INVENTORY_FILE> playbook_fabric_experiment_ptp.yml --tags=ptp_start
+
 ansible-playbook -i <INVENTORY_FILE> playbook_fabric_experiment_ptp.yml --tags=ptp_stop
 </pre>          
 License
