@@ -8,13 +8,13 @@
 
   - block:
     
-    - include: package_dependency_install.yml
+    - include_tasks: package_dependency_install.yml
       when: (ptp4l_version.stdout == '')
 
-    - include: linuxptp_fetch_n_install.yml
+    - include_tasks: linuxptp_fetch_n_install.yml
     when: (ptp4l_version.stdout == '') or ( ptp4l_version.stdout != (PTP_PACKAGE_VERSION) or force_install )
 
-  - include: disable_chronyd.yml
+  - include_tasks: disable_chronyd.yml
 
   - name: Modprobe ptp_kvm
     modprobe:
