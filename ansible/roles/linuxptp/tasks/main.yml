@@ -4,14 +4,14 @@
     loop: "{{ ansible_interfaces |difference(AVOID_IFACES)}}"
     loop_control:
       loop_var: IFACE
-    become: True
+  become: True
   tags:
     - ptp_start
     - ptp_stop
 
 - block:
   - include_tasks: for_vms.yml
-    become: True
+  become: True
   tags: ptp_install
 
 
@@ -25,7 +25,7 @@
     loop_control:
       loop_var: PTP_IFACE
     ignore_errors: True
-    become: True
+  become: True
   tags: ptp_stop
 
 
@@ -39,5 +39,5 @@
     loop_control:
       loop_var: PTP_IFACE
     ignore_errors: True
-    become: True
+  become: True
   tags: ptp_start
